@@ -1,0 +1,973 @@
+
+	            SELECT
+	                sml.product_id,
+	                sml.location_id,
+	                sml.location_dest_id,
+	                sml.quantity,
+	                sml.product_uom_id,
+	                l_from.usage AS loc_from_usage,
+	                l_to.usage AS loc_to_usage
+	            FROM stock_move_line sml
+	            JOIN stock_location l_from ON sml.location_id = l_from.id
+	            JOIN stock_location l_to ON sml.location_dest_id = l_to.id
+	            JOIN product_product p ON sml.product_id = p.id
+	            WHERE state = 'done' AND p.active = true AND sml.date <= '2025-03-26T10:52:14'::timestamp
+	         ORDER BY sml.id;
+2025-03-26 16:23:05.316 IST [1184726] LOG:  duration: 112.162 ms
+2025-03-26 16:23:05.440 IST [1184726] LOG:  statement:  SELECT r.id FROM ir_rule r JOIN ir_model m ON (r.model_id=m.id)
+	                    WHERE m.model='product.template' AND r.active AND r.perm_read
+	                    AND (r.id IN (SELECT rule_group_id FROM rule_group_rel rg
+	                                  JOIN res_groups_users_rel gu ON (rg.group_id=gu.gid)
+	                                  WHERE gu.uid=2)
+	                         OR r.global)
+	                    ORDER BY r.id
+	                
+
+	                2025-03-26 16:23:05.455 IST [1184726] LOG:  statement: SELECT "product_product"."id", "product_product"."default_code", "product_product"."active", "product_product"."product_tmpl_id", "product_product"."barcode", "product_product"."combination_indices", "product_product"."volume", "product_product"."weight", "product_product"."can_image_variant_1024_be_zoomed", "product_product"."write_date", "product_product"."create_uid", "product_product"."create_date", "product_product"."write_uid", "product_product"."lot_properties_definition", "product_product"."hide_in_report" FROM "product_product" LEFT JOIN "product_template" AS "product_product__product_tmpl_id" ON ("product_product"."product_tmpl_id" = "product_product__product_tmpl_id"."id") WHERE ("product_product"."id" IN (152135)) AND (("product_product__product_tmpl_id"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_product__product_tmpl_id"."company_id" IS NULL)
+	2025-03-26 16:23:05.458 IST [1184726] LOG:  duration: 3.153 ms
+	2025-03-26 16:23:05.459 IST [1184726] LOG:  statement: SELECT 1 FROM res_groups_users_rel WHERE uid=2 AND gid IN
+			                    (SELECT res_id FROM ir_model_data WHERE module='stock' AND name='group_stock_user' AND model='res.groups')
+	2025-03-26 16:23:05.461 IST [1184726] LOG:  duration: 1.871 ms
+	2025-03-26 16:23:05.462 IST [1184726] LOG:  statement: SELECT "product_template"."id", "product_template"."name"->>'en_US', "product_template"."sequence", "product_template"."description"->>'en_US', "product_template"."description_purchase"->>'en_US', "product_template"."description_sale"->>'en_US', "product_template"."detailed_type", "product_template"."type", "product_template"."categ_id", "product_template"."list_price", "product_template"."volume", "product_template"."weight", "product_template"."sale_ok", "product_template"."purchase_ok", "product_template"."uom_id", "product_template"."uom_po_id", "product_template"."company_id", "product_template"."active", "product_template"."color", "product_template"."default_code", "product_template"."can_image_1024_be_zoomed", "product_template"."has_configurable_attributes", "product_template"."priority", "product_template"."create_uid", "product_template"."create_date", "product_template"."write_uid", "product_template"."write_date", "product_template"."sale_delay", "product_template"."tracking", "product_template"."description_picking"->>'en_US', "product_template"."description_pickingout"->>'en_US', "product_template"."description_pickingin"->>'en_US', "product_template"."bom_count", "product_template"."use_expiration_date", "product_template"."expiration_time", "product_template"."use_time", "product_template"."removal_time", "product_template"."alert_time", "product_template"."purchase_method", "product_template"."purchase_line_warn", "product_template"."purchase_line_warn_msg", "product_template"."allow_negative_stock", "product_template"."regular_approval", "product_template"."document_expiry_date", "product_template"."available_in_pos", "product_template"."to_weight", "product_template"."service_type", "product_template"."sale_line_warn", "product_template"."sale_line_warn_msg", "product_template"."expense_policy", "product_template"."invoice_policy", "product_template"."landed_cost_ok", "product_template"."split_method_landed_cost", "product_template"."department_id", "product_template"."division_id", "product_template"."brand_id", "product_template"."product_code", "product_template"."sale_product_margin", "product_template"."wef_date", "product_template"."create_repair", "product_template"."hs_code", "product_template"."country_of_origin", "product_template"."status", "product_template"."product_category", "product_template"."is_freeze", "product_template"."freeze_reason", "product_template"."is_newly_created_product", "product_template"."service_tracking", "product_template"."is_product_bundle" FROM "product_template" WHERE ("product_template"."id" IN (161411)) AND (("product_template"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_template"."company_id" IS NULL)
+2025-03-26 16:23:05.463 IST [1184726] LOG:  duration: 1.524 ms
+2025-03-26 16:23:05.464 IST [1184726] LOG:  statement: SELECT "product_product"."id", "product_product"."default_code", "product_product"."active", "product_product"."product_tmpl_id", "product_product"."barcode", "product_product"."combination_indices", "product_product"."volume", "product_product"."weight", "product_product"."can_image_variant_1024_be_zoomed", "product_product"."write_date", "product_product"."create_uid", "product_product"."create_date", "product_product"."write_uid", "product_product"."lot_properties_definition", "product_product"."hide_in_report" FROM "product_product" LEFT JOIN "product_template" AS "product_product__product_tmpl_id" ON ("product_product"."product_tmpl_id" = "product_product__product_tmpl_id"."id") WHERE ("product_product"."id" IN (61580)) AND (("product_product__product_tmpl_id"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_product__product_tmpl_id"."company_id" IS NULL)
+2025-03-26 16:23:05.465 IST [1184726] LOG:  duration: 0.809 ms
+2025-03-26 16:23:05.466 IST [1184726] LOG:  statement: SELECT "product_template"."id", "product_template"."name"->>'en_US', "product_template"."sequence", "product_template"."description"->>'en_US', "product_template"."description_purchase"->>'en_US', "product_template"."description_sale"->>'en_US', "product_template"."detailed_type", "product_template"."type", "product_template"."categ_id", "product_template"."list_price", "product_template"."volume", "product_template"."weight", "product_template"."sale_ok", "product_template"."purchase_ok", "product_template"."uom_id", "product_template"."uom_po_id", "product_template"."company_id", "product_template"."active", "product_template"."color", "product_template"."default_code", "product_template"."can_image_1024_be_zoomed", "product_template"."has_configurable_attributes", "product_template"."priority", "product_template"."create_uid", "product_template"."create_date", "product_template"."write_uid", "product_template"."write_date", "product_template"."sale_delay", "product_template"."tracking", "product_template"."description_picking"->>'en_US', "product_template"."description_pickingout"->>'en_US', "product_template"."description_pickingin"->>'en_US', "product_template"."bom_count", "product_template"."use_expiration_date", "product_template"."expiration_time", "product_template"."use_time", "product_template"."removal_time", "product_template"."alert_time", "product_template"."purchase_method", "product_template"."purchase_line_warn", "product_template"."purchase_line_warn_msg", "product_template"."allow_negative_stock", "product_template"."regular_approval", "product_template"."document_expiry_date", "product_template"."available_in_pos", "product_template"."to_weight", "product_template"."service_type", "product_template"."sale_line_warn", "product_template"."sale_line_warn_msg", "product_template"."expense_policy", "product_template"."invoice_policy", "product_template"."landed_cost_ok", "product_template"."split_method_landed_cost", "product_template"."department_id", "product_template"."division_id", "product_template"."brand_id", "product_template"."product_code", "product_template"."sale_product_margin", "product_template"."wef_date", "product_template"."create_repair", "product_template"."hs_code", "product_template"."country_of_origin", "product_template"."status", "product_template"."product_category", "product_template"."is_freeze", "product_template"."freeze_reason", "product_template"."is_newly_created_product", "product_template"."service_tracking", "product_template"."is_product_bundle" FROM "product_template" WHERE ("product_template"."id" IN (61580)) AND (("product_template"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_template"."company_id" IS NULL)
+2025-03-26 16:23:05.466 IST [1184726] LOG:  duration: 0.397 ms
+2025-03-26 16:23:05.467 IST [1184726] LOG:  statement: SELECT "product_product"."id", "product_product"."default_code", "product_product"."active", "product_product"."product_tmpl_id", "product_product"."barcode", "product_product"."combination_indices", "product_product"."volume", "product_product"."weight", "product_product"."can_image_variant_1024_be_zoomed", "product_product"."write_date", "product_product"."create_uid", "product_product"."create_date", "product_product"."write_uid", "product_product"."lot_properties_definition", "product_product"."hide_in_report" FROM "product_product" LEFT JOIN "product_template" AS "product_product__product_tmpl_id" ON ("product_product"."product_tmpl_id" = "product_product__product_tmpl_id"."id") WHERE ("product_product"."id" IN (127743)) AND (("product_product__product_tmpl_id"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_product__product_tmpl_id"."company_id" IS NULL)
+2025-03-26 16:23:05.468 IST [1184726] LOG:  duration: 0.691 ms
+2025-03-26 16:23:05.469 IST [1184726] LOG:  statement: SELECT "product_template"."id", "product_template"."name"->>'en_US', "product_template"."sequence", "product_template"."description"->>'en_US', "product_template"."description_purchase"->>'en_US', "product_template"."description_sale"->>'en_US', "product_template"."detailed_type", "product_template"."type", "product_template"."categ_id", "product_template"."list_price", "product_template"."volume", "product_template"."weight", "product_template"."sale_ok", "product_template"."purchase_ok", "product_template"."uom_id", "product_template"."uom_po_id", "product_template"."company_id", "product_template"."active", "product_template"."color", "product_template"."default_code", "product_template"."can_image_1024_be_zoomed", "product_template"."has_configurable_attributes", "product_template"."priority", "product_template"."create_uid", "product_template"."create_date", "product_template"."write_uid", "product_template"."write_date", "product_template"."sale_delay", "product_template"."tracking", "product_template"."description_picking"->>'en_US', "product_template"."description_pickingout"->>'en_US', "product_template"."description_pickingin"->>'en_US', "product_template"."bom_count", "product_template"."use_expiration_date", "product_template"."expiration_time", "product_template"."use_time", "product_template"."removal_time", "product_template"."alert_time", "product_template"."purchase_method", "product_template"."purchase_line_warn", "product_template"."purchase_line_warn_msg", "product_template"."allow_negative_stock", "product_template"."regular_approval", "product_template"."document_expiry_date", "product_template"."available_in_pos", "product_template"."to_weight", "product_template"."service_type", "product_template"."sale_line_warn", "product_template"."sale_line_warn_msg", "product_template"."expense_policy", "product_template"."invoice_policy", "product_template"."landed_cost_ok", "product_template"."split_method_landed_cost", "product_template"."department_id", "product_template"."division_id", "product_template"."brand_id", "product_template"."product_code", "product_template"."sale_product_margin", "product_template"."wef_date", "product_template"."create_repair", "product_template"."hs_code", "product_template"."country_of_origin", "product_template"."status", "product_template"."product_category", "product_template"."is_freeze", "product_template"."freeze_reason", "product_template"."is_newly_created_product", "product_template"."service_tracking", "product_template"."is_product_bundle" FROM "product_template" WHERE ("product_template"."id" IN (135536)) AND (("product_template"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_template"."company_id" IS NULL)
+2025-03-26 16:23:05.469 IST [1184726] LOG:  duration: 0.293 ms
+2025-03-26 16:23:05.470 IST [1184726] LOG:  statement: SELECT "product_product"."id", "product_product"."default_code", "product_product"."active", "product_product"."product_tmpl_id", "product_product"."barcode", "product_product"."combination_indices", "product_product"."volume", "product_product"."weight", "product_product"."can_image_variant_1024_be_zoomed", "product_product"."write_date", "product_product"."create_uid", "product_product"."create_date", "product_product"."write_uid", "product_product"."lot_properties_definition", "product_product"."hide_in_report" FROM "product_product" LEFT JOIN "product_template" AS "product_product__product_tmpl_id" ON ("product_product"."product_tmpl_id" = "product_product__product_tmpl_id"."id") WHERE ("product_product"."id" IN (147306)) AND (("product_product__product_tmpl_id"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_product__product_tmpl_id"."company_id" IS NULL)
+2025-03-26 16:23:05.470 IST [1184726] LOG:  duration: 0.639 ms
+2025-03-26 16:23:05.471 IST [1184726] LOG:  statement: SELECT "product_template"."id", "product_template"."name"->>'en_US', "product_template"."sequence", "product_template"."description"->>'en_US', "product_template"."description_purchase"->>'en_US', "product_template"."description_sale"->>'en_US', "product_template"."detailed_type", "product_template"."type", "product_template"."categ_id", "product_template"."list_price", "product_template"."volume", "product_template"."weight", "product_template"."sale_ok", "product_template"."purchase_ok", "product_template"."uom_id", "product_template"."uom_po_id", "product_template"."company_id", "product_template"."active", "product_template"."color", "product_template"."default_code", "product_template"."can_image_1024_be_zoomed", "product_template"."has_configurable_attributes", "product_template"."priority", "product_template"."create_uid", "product_template"."create_date", "product_template"."write_uid", "product_template"."write_date", "product_template"."sale_delay", "product_template"."tracking", "product_template"."description_picking"->>'en_US', "product_template"."description_pickingout"->>'en_US', "product_template"."description_pickingin"->>'en_US', "product_template"."bom_count", "product_template"."use_expiration_date", "product_template"."expiration_time", "product_template"."use_time", "product_template"."removal_time", "product_template"."alert_time", "product_template"."purchase_method", "product_template"."purchase_line_warn", "product_template"."purchase_line_warn_msg", "product_template"."allow_negative_stock", "product_template"."regular_approval", "product_template"."document_expiry_date", "product_template"."available_in_pos", "product_template"."to_weight", "product_template"."service_type", "product_template"."sale_line_warn", "product_template"."sale_line_warn_msg", "product_template"."expense_policy", "product_template"."invoice_policy", "product_template"."landed_cost_ok", "product_template"."split_method_landed_cost", "product_template"."department_id", "product_template"."division_id", "product_template"."brand_id", "product_template"."product_code", "product_template"."sale_product_margin", "product_template"."wef_date", "product_template"."create_repair", "product_template"."hs_code", "product_template"."country_of_origin", "product_template"."status", "product_template"."product_category", "product_template"."is_freeze", "product_template"."freeze_reason", "product_template"."is_newly_created_product", "product_template"."service_tracking", "product_template"."is_product_bundle" FROM "product_template" WHERE ("product_template"."id" IN (155099)) AND (("product_template"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_template"."company_id" IS NULL)
+2025-03-26 16:23:05.471 IST [1184726] LOG:  duration: 0.321 ms
+
+
+
+
+
+
+
+
+
+2025-03-26 16:23:27.435 IST [1184726] LOG:  statement: SELECT "product_product"."id", "product_product"."default_code", "product_product"."active", "product_product"."product_tmpl_id", "product_product"."barcode", "product_product"."combination_indices", "product_product"."volume", "product_product"."weight", "product_product"."can_image_variant_1024_be_zoomed", "product_product"."write_date", "product_product"."create_uid", "product_product"."create_date", "product_product"."write_uid", "product_product"."lot_properties_definition", "product_product"."hide_in_report" FROM "product_product" LEFT JOIN "product_template" AS "product_product__product_tmpl_id" ON ("product_product"."product_tmpl_id" = "product_product__product_tmpl_id"."id") WHERE ("product_product"."id" IN (174715)) AND (("product_product__product_tmpl_id"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_product__product_tmpl_id"."company_id" IS NULL)
+2025-03-26 16:23:27.435 IST [1184726] LOG:  duration: 0.608 ms
+2025-03-26 16:23:27.436 IST [1184726] LOG:  statement: SELECT "product_template"."id", "product_template"."name"->>'en_US', "product_template"."sequence", "product_template"."description"->>'en_US', "product_template"."description_purchase"->>'en_US', "product_template"."description_sale"->>'en_US', "product_template"."detailed_type", "product_template"."type", "product_template"."categ_id", "product_template"."list_price", "product_template"."volume", "product_template"."weight", "product_template"."sale_ok", "product_template"."purchase_ok", "product_template"."uom_id", "product_template"."uom_po_id", "product_template"."company_id", "product_template"."active", "product_template"."color", "product_template"."default_code", "product_template"."can_image_1024_be_zoomed", "product_template"."has_configurable_attributes", "product_template"."priority", "product_template"."create_uid", "product_template"."create_date", "product_template"."write_uid", "product_template"."write_date", "product_template"."sale_delay", "product_template"."tracking", "product_template"."description_picking"->>'en_US', "product_template"."description_pickingout"->>'en_US', "product_template"."description_pickingin"->>'en_US', "product_template"."bom_count", "product_template"."use_expiration_date", "product_template"."expiration_time", "product_template"."use_time", "product_template"."removal_time", "product_template"."alert_time", "product_template"."purchase_method", "product_template"."purchase_line_warn", "product_template"."purchase_line_warn_msg", "product_template"."allow_negative_stock", "product_template"."regular_approval", "product_template"."document_expiry_date", "product_template"."available_in_pos", "product_template"."to_weight", "product_template"."service_type", "product_template"."sale_line_warn", "product_template"."sale_line_warn_msg", "product_template"."expense_policy", "product_template"."invoice_policy", "product_template"."landed_cost_ok", "product_template"."split_method_landed_cost", "product_template"."department_id", "product_template"."division_id", "product_template"."brand_id", "product_template"."product_code", "product_template"."sale_product_margin", "product_template"."wef_date", "product_template"."create_repair", "product_template"."hs_code", "product_template"."country_of_origin", "product_template"."status", "product_template"."product_category", "product_template"."is_freeze", "product_template"."freeze_reason", "product_template"."is_newly_created_product", "product_template"."service_tracking", "product_template"."is_product_bundle" FROM "product_template" WHERE ("product_template"."id" IN (188275)) AND (("product_template"."company_id" IN (SELECT "res_company"."id" FROM "res_company" WHERE ("res_company"."id" IN (1)))) OR "product_template"."company_id" IS NULL)
+2025-03-26 16:23:27.436 IST [1184726] LOG:  duration: 0.303 ms
+
+025-03-26 16:23:27.441 IST [1184726] LOG:  statement: SELECT model, res_id FROM ir_model_data WHERE module='material_stock_request' AND name='stock_request_transit_location'
+2025-03-26 16:23:27.442 IST [1184726] LOG:  duration: 1.272 ms
+2025-03-26 16:23:27.443 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.443 IST [1184726] LOG:  duration: 0.216 ms
+2025-03-26 16:23:27.443 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 152135
+	        
+2025-03-26 16:23:27.454 IST [1184726] LOG:  duration: 10.576 ms
+2025-03-26 16:23:27.455 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 1064) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.466 IST [1184726] LOG:  duration: 11.032 ms
+2025-03-26 16:23:27.467 IST [1184726] LOG:  statement:  SELECT r.id FROM ir_rule r JOIN ir_model m ON (r.model_id=m.id)
+	                    WHERE m.model='stock.picking' AND r.active AND r.perm_read
+	                    AND (r.id IN (SELECT rule_group_id FROM rule_group_rel rg
+	                                  JOIN res_groups_users_rel gu ON (rg.group_id=gu.gid)
+	                                  WHERE gu.uid=2)
+	                         OR r.global)
+	                    ORDER BY r.id
+	                
+2025-03-26 16:23:27.467 IST [1184726] LOG:  duration: 0.893 ms
+2025-03-26 16:23:27.468 IST [1184726] LOG:  statement: SELECT "ir_rule"."id", "ir_rule"."name", "ir_rule"."active", "ir_rule"."model_id", "ir_rule"."domain_force", "ir_rule"."perm_read", "ir_rule"."perm_write", "ir_rule"."perm_create", "ir_rule"."perm_unlink", "ir_rule"."create_uid", "ir_rule"."create_date", "ir_rule"."write_uid", "ir_rule"."write_date", "ir_rule"."global" FROM "ir_rule" WHERE ("ir_rule"."id" IN (146, 369, 445, 446))
+2025-03-26 16:23:27.468 IST [1184726] LOG:  duration: 0.293 ms
+2025-03-26 16:23:27.469 IST [1184726] LOG:  statement: SELECT "rule_group_rel"."rule_group_id", "rule_group_rel"."group_id" FROM "res_groups" JOIN "rule_group_rel" ON ("rule_group_rel"."group_id" = "res_groups"."id") WHERE "rule_group_rel"."rule_group_id" IN (146, 369, 445, 446) ORDER BY "res_groups"."name"->>'en_US'  
+2025-03-26 16:23:27.469 IST [1184726] LOG:  duration: 0.395 ms
+2025-03-26 16:23:27.470 IST [1184726] LOG:  statement: SELECT "hr_department_res_users_rel"."res_users_id", "hr_department_res_users_rel"."hr_department_id" FROM "hr_department" JOIN "hr_department_res_users_rel" ON ("hr_department_res_users_rel"."hr_department_id" = "hr_department"."id") WHERE "hr_department_res_users_rel"."res_users_id" IN (2) ORDER BY "hr_department"."name"->>'en_US'  
+2025-03-26 16:23:27.473 IST [1184726] LOG:  duration: 3.117 ms
+2025-03-26 16:23:27.474 IST [1184726] LOG:  statement: SELECT "hr_department"."id", "hr_department"."name"->>'en_US', "hr_department"."complete_name", "hr_department"."active", "hr_department"."company_id", "hr_department"."parent_id", "hr_department"."manager_id", "hr_department"."note", "hr_department"."color", "hr_department"."parent_path", "hr_department"."master_department_id", "hr_department"."create_uid", "hr_department"."create_date", "hr_department"."write_uid", "hr_department"."write_date", "hr_department"."code", "hr_department"."division_id", "hr_department"."location_id", "hr_department"."department_head_id", "hr_department"."is_department_approval_needed", "hr_department"."journal_id", "hr_department"."cash_sale_journal_id", "hr_department"."account_id", "hr_department"."repair_location_id", "hr_department"."repair_journal_id", "hr_department"."sc_journal_id" FROM "hr_department" WHERE ("hr_department"."id" IN (161, 122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126))
+2025-03-26 16:23:27.474 IST [1184726] LOG:  duration: 0.525 ms
+
+2025-03-26 16:23:27.490 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (42649, 42650))
+2025-03-26 16:23:27.491 IST [1184726] LOG:  duration: 1.240 ms
+2025-03-26 16:23:27.492 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (7814) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.496 IST [1184726] LOG:  duration: 4.234 ms
+2025-03-26 16:23:27.497 IST [1184726] LOG:  statement: SELECT "res_users"."id", "res_users"."partner_id", "res_users"."login", "res_users"."signature", "res_users"."active", "res_users"."action_id", "res_users"."share", "res_users"."company_id", "res_users"."create_uid", "res_users"."create_date", "res_users"."write_uid", "res_users"."write_date", "res_users"."notification_type", "res_users"."odoobot_state", "res_users"."odoobot_failed", "res_users"."sale_team_id", "res_users"."target_sales_won", "res_users"."target_sales_done", "res_users"."target_sales_invoiced", "res_users"."invoiced_target" FROM "res_users" WHERE ("res_users"."id" IN (7, 831, 779, 799))
+2025-03-26 16:23:27.498 IST [1184726] LOG:  duration: 0.403 ms
+2025-03-26 16:23:27.499 IST [1184726] LOG:  statement:  SELECT r.id FROM ir_rule r JOIN ir_model m ON (r.model_id=m.id)
+	                    WHERE m.model='stock.move' AND r.active AND r.perm_read
+	                    AND (r.id IN (SELECT rule_group_id FROM rule_group_rel rg
+	                                  JOIN res_groups_users_rel gu ON (rg.group_id=gu.gid)
+	                                  WHERE gu.uid=2)
+	                         OR r.global)
+	                    ORDER BY r.id
+	                
+2025-03-26 16:23:27.499 IST [1184726] LOG:  duration: 0.970 ms
+
+
+025-03-26 16:23:27.500 IST [1184726] LOG:  statement: SELECT "ir_rule"."id", "ir_rule"."name", "ir_rule"."active", "ir_rule"."model_id", "ir_rule"."domain_force", "ir_rule"."perm_read", "ir_rule"."perm_write", "ir_rule"."perm_create", "ir_rule"."perm_unlink", "ir_rule"."create_uid", "ir_rule"."create_date", "ir_rule"."write_uid", "ir_rule"."write_date", "ir_rule"."global" FROM "ir_rule" WHERE ("ir_rule"."id" IN (152))
+2025-03-26 16:23:27.500 IST [1184726] LOG:  duration: 0.188 ms
+2025-03-26 16:23:27.500 IST [1184726] LOG:  statement: SELECT "rule_group_rel"."rule_group_id", "rule_group_rel"."group_id" FROM "res_groups" JOIN "rule_group_rel" ON ("rule_group_rel"."group_id" = "res_groups"."id") WHERE "rule_group_rel"."rule_group_id" IN (152) ORDER BY "res_groups"."name"->>'en_US'  
+2025-03-26 16:23:27.501 IST [1184726] LOG:  duration: 0.298 ms
+2025-03-26 16:23:27.501 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (7814)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.501 IST [1184726] LOG:  duration: 0.230 ms
+2025-03-26 16:23:27.502 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (7815)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.502 IST [1184726] LOG:  duration: 0.204 ms
+2025-03-26 16:23:27.503 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (42651, 42652))
+2025-03-26 16:23:27.503 IST [1184726] LOG:  duration: 0.308 ms
+2025-03-26 16:23:27.503 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (7815) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.504 IST [1184726] LOG:  duration: 0.441 ms
+2025-03-26 16:23:27.504 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (7815)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.505 IST [1184726] LOG:  duration: 0.238 ms
+2025-03-26 16:23:27.505 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 152135 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.509 IST [1184726] LOG:  duration: 3.662 ms
+2025-03-26 16:23:27.509 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (152135, 151, 6.0, 0.0,'2025-03-26T10:52:14'::timestamp,21.252000000000002,3.5420000000000003);
+	        
+2025-03-26 16:23:27.510 IST [1184726] LOG:  duration: 1.103 ms
+2025-03-26 16:23:27.510 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.510 IST [1184726] LOG:  duration: 0.171 ms
+2025-03-26 16:23:27.511 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 61580
+	        
+2025-03-26 16:23:27.514 IST [1184726] LOG:  duration: 3.627 ms
+2025-03-26 16:23:27.515 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 1802) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.519 IST [1184726] LOG:  duration: 4.482 ms
+2025-03-26 16:23:27.522 IST [1184726] LOG:  statement: SELECT "stock_picking"."id", "stock_picking"."name", "stock_picking"."origin", "stock_picking"."note", "stock_picking"."backorder_id", "stock_picking"."return_id", "stock_picking"."move_type", "stock_picking"."state", "stock_picking"."group_id", "stock_picking"."priority", "stock_picking"."scheduled_date", "stock_picking"."date_deadline", "stock_picking"."has_deadline_issue", "stock_picking"."date", "stock_picking"."date_done", "stock_picking"."location_id", "stock_picking"."location_dest_id", "stock_picking"."picking_type_id", "stock_picking"."partner_id", "stock_picking"."company_id", "stock_picking"."user_id", "stock_picking"."owner_id", "stock_picking"."printed", "stock_picking"."is_locked", "stock_picking"."create_uid", "stock_picking"."create_date", "stock_picking"."write_uid", "stock_picking"."write_date", "stock_picking"."batch_id", "stock_picking"."pos_session_id", "stock_picking"."pos_order_id", "stock_picking"."unit_price", "stock_picking"."asset_account_id", "stock_picking"."asset_journal_id", "stock_picking"."sale_id", "stock_picking"."department_id", "stock_picking"."division_id", "stock_picking"."source_location_domain", "stock_picking"."dest_location_domain", "stock_picking"."carrier_price", "stock_picking"."carrier_id", "stock_picking"."weight", "stock_picking"."carrier_tracking_ref", "stock_picking"."landed_cost_applied", "stock_picking"."request_type", "stock_picking"."issue_type_id", "stock_picking"."return_date", "stock_picking"."to_department_id", "stock_picking"."journal_id", "stock_picking"."show_action_validate", "stock_picking"."show_entries", "stock_picking"."stock_entry", "stock_picking"."material_request_id", "stock_picking"."stock_request_id", "stock_picking"."material_transfer", "stock_picking"."backorder_journal" FROM "stock_picking" WHERE ("stock_picking"."id" IN (14028, 14027)) AND (("stock_picking"."company_id" IN (1)) AND (((((("stock_picking"."department_id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126)) OR "stock_picking"."department_id" IS NULL) OR EXISTS (SELECT 1 FROM "res_users_stock_picking_rel" AS "stock_picking__stock_request_user_ids" WHERE "stock_picking__stock_request_user_ids"."stock_picking_id" = "stock_picking"."id" AND "stock_picking__stock_request_user_ids"."res_users_id" IN (2))) OR ("stock_picking"."sale_id" IN (SELECT "sale_order"."id" FROM "sale_order" WHERE ("sale_order"."user_id" = 2)))) OR ("stock_picking"."id" IN (SELECT "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."purchase_line_id" IN (SELECT "purchase_order_line"."id" FROM "purchase_order_line" WHERE ("purchase_order_line"."order_id" IN (SELECT "purchase_order"."id" FROM "purchase_order" WHERE ("purchase_order"."user_id" = 2))))) AND "stock_move"."picking_id" IS NOT NULL))) OR ("stock_picking"."department_id" IN (SELECT "hr_department"."id" FROM "hr_department" WHERE ("hr_department"."id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126))))))
+2025-03-26 16:23:27.523 IST [1184726] LOG:  duration: 1.550 ms
+2025-03-26 16:23:27.525 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (14027)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.525 IST [1184726] LOG:  duration: 0.714 ms
+2025-03-26 16:23:27.526 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (60252))
+2025-03-26 16:23:27.526 IST [1184726] LOG:  duration: 0.431 ms
+2025-03-26 16:23:27.527 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (14027) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.528 IST [1184726] LOG:  duration: 0.908 ms
+2025-03-26 16:23:27.529 IST [1184726] LOG:  statement: SELECT "res_users"."id", "res_users"."partner_id", "res_users"."login", "res_users"."signature", "res_users"."active", "res_users"."action_id", "res_users"."share", "res_users"."company_id", "res_users"."create_uid", "res_users"."create_date", "res_users"."write_uid", "res_users"."write_date", "res_users"."notification_type", "res_users"."odoobot_state", "res_users"."odoobot_failed", "res_users"."sale_team_id", "res_users"."target_sales_won", "res_users"."target_sales_done", "res_users"."target_sales_invoiced", "res_users"."invoiced_target" FROM "res_users" WHERE ("res_users"."id" IN (843, 752, 794))
+2025-03-26 16:23:27.529 IST [1184726] LOG:  duration: 0.260 ms
+2025-03-26 16:23:27.529 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (14027)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.530 IST [1184726] LOG:  duration: 0.233 ms
+2025-03-26 16:23:27.530 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (14028)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.530 IST [1184726] LOG:  duration: 0.206 ms
+2025-03-26 16:23:27.531 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (60253))
+2025-03-26 16:23:27.531 IST [1184726] LOG:  duration: 0.267 ms
+2025-03-26 16:23:27.532 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (14028) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.532 IST [1184726] LOG:  duration: 0.554 ms
+2025-03-26 16:23:27.533 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (14028)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.533 IST [1184726] LOG:  duration: 0.201 ms
+2025-03-26 16:23:27.533 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 61580 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.534 IST [1184726] LOG:  duration: 0.791 ms
+2025-03-26 16:23:27.534 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (61580, 151, 600.0, 0.0,'2025-03-26T10:52:14'::timestamp,311.32655007949126,0.5188775834658188);
+	        
+2025-03-26 16:23:27.534 IST [1184726] LOG:  duration: 0.322 ms
+2025-03-26 16:23:27.535 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.535 IST [1184726] LOG:  duration: 0.150 ms
+2025-03-26 16:23:27.535 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 127743
+	        
+2025-03-26 16:23:27.535 IST [1184726] LOG:  duration: 0.597 ms
+2025-03-26 16:23:27.536 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 127743 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.536 IST [1184726] LOG:  duration: 0.212 ms
+2025-03-26 16:23:27.536 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (127743, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,180.185,180.185);
+	        
+2025-03-26 16:23:27.536 IST [1184726] LOG:  duration: 0.309 ms
+2025-03-26 16:23:27.536 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.537 IST [1184726] LOG:  duration: 0.167 ms
+2025-03-26 16:23:27.537 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 147306
+	        
+2025-03-26 16:23:27.538 IST [1184726] LOG:  duration: 0.739 ms
+2025-03-26 16:23:27.538 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 147306 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.538 IST [1184726] LOG:  duration: 0.241 ms
+2025-03-26 16:23:27.538 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (147306, 151, 3.0, 0,'2025-03-26T10:52:14'::timestamp,15.213,5.071);
+	        
+2025-03-26 16:23:27.538 IST [1184726] LOG:  duration: 0.278 ms
+2025-03-26 16:23:27.539 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.539 IST [1184726] LOG:  duration: 0.149 ms
+2025-03-26 16:23:27.539 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 61417
+	        
+2025-03-26 16:23:27.540 IST [1184726] LOG:  duration: 0.536 ms
+2025-03-26 16:23:27.540 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 61417 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.540 IST [1184726] LOG:  duration: 0.208 ms
+2025-03-26 16:23:27.540 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (61417, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,18.341,18.341);
+	        
+2025-03-26 16:23:27.540 IST [1184726] LOG:  duration: 0.243 ms
+2025-03-26 16:23:27.540 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.540 IST [1184726] LOG:  duration: 0.140 ms
+2025-03-26 16:23:27.541 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 24950
+	        
+2025-03-26 16:23:27.541 IST [1184726] LOG:  duration: 0.532 ms
+2025-03-26 16:23:27.541 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 24950 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.541 IST [1184726] LOG:  duration: 0.191 ms
+2025-03-26 16:23:27.542 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (24950, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,26.135,26.135);
+	        
+2025-03-26 16:23:27.542 IST [1184726] LOG:  duration: 0.237 ms
+2025-03-26 16:23:27.542 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.542 IST [1184726] LOG:  duration: 0.143 ms
+2025-03-26 16:23:27.542 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 45755
+	        
+2025-03-26 16:23:27.543 IST [1184726] LOG:  duration: 0.591 ms
+2025-03-26 16:23:27.543 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 45755 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.543 IST [1184726] LOG:  duration: 0.212 ms
+2025-03-26 16:23:27.543 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (45755, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,22.076,11.038);
+	        
+2025-03-26 16:23:27.543 IST [1184726] LOG:  duration: 0.172 ms
+2025-03-26 16:23:27.544 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.544 IST [1184726] LOG:  duration: 0.141 ms
+2025-03-26 16:23:27.544 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 119599
+	        
+2025-03-26 16:23:27.544 IST [1184726] LOG:  duration: 0.534 ms
+2025-03-26 16:23:27.544 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 119599 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.545 IST [1184726] LOG:  duration: 0.182 ms
+2025-03-26 16:23:27.545 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (119599, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,67.046,33.523);
+	        
+2025-03-26 16:23:27.545 IST [1184726] LOG:  duration: 0.236 ms
+2025-03-26 16:23:27.545 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.545 IST [1184726] LOG:  duration: 0.158 ms
+2025-03-26 16:23:27.545 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 60755
+	        
+2025-03-26 16:23:27.546 IST [1184726] LOG:  duration: 0.516 ms
+2025-03-26 16:23:27.546 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 60755 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.546 IST [1184726] LOG:  duration: 0.199 ms
+2025-03-26 16:23:27.546 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (60755, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,130.003,130.003);
+	        
+2025-03-26 16:23:27.547 IST [1184726] LOG:  duration: 0.192 ms
+2025-03-26 16:23:27.547 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.547 IST [1184726] LOG:  duration: 0.145 ms
+2025-03-26 16:23:27.547 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 152270
+	        
+2025-03-26 16:23:27.548 IST [1184726] LOG:  duration: 0.819 ms
+2025-03-26 16:23:27.548 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 152270 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.548 IST [1184726] LOG:  duration: 0.235 ms
+2025-03-26 16:23:27.548 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (152270, 151, 4.0, 0,'2025-03-26T10:52:14'::timestamp,27.6,6.9);
+	        
+2025-03-26 16:23:27.549 IST [1184726] LOG:  duration: 0.229 ms
+2025-03-26 16:23:27.549 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.549 IST [1184726] LOG:  duration: 0.165 ms
+2025-03-26 16:23:27.549 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 105121
+	        
+2025-03-26 16:23:27.550 IST [1184726] LOG:  duration: 0.573 ms
+2025-03-26 16:23:27.550 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 105121 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.550 IST [1184726] LOG:  duration: 0.206 ms
+2025-03-26 16:23:27.550 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (105121, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,2.378,2.378);
+	        
+2025-03-26 16:23:27.550 IST [1184726] LOG:  duration: 0.175 ms
+2025-03-26 16:23:27.551 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.551 IST [1184726] LOG:  duration: 0.135 ms
+2025-03-26 16:23:27.551 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 119597
+	        
+2025-03-26 16:23:27.551 IST [1184726] LOG:  duration: 0.432 ms
+2025-03-26 16:23:27.551 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 119597 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.552 IST [1184726] LOG:  duration: 0.203 ms
+2025-03-26 16:23:27.552 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (119597, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,37.968,37.968);
+	        
+2025-03-26 16:23:27.552 IST [1184726] LOG:  duration: 0.180 ms
+2025-03-26 16:23:27.552 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.552 IST [1184726] LOG:  duration: 0.163 ms
+2025-03-26 16:23:27.552 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 112950
+	        
+2025-03-26 16:23:27.553 IST [1184726] LOG:  duration: 0.556 ms
+2025-03-26 16:23:27.553 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 112950 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.553 IST [1184726] LOG:  duration: 0.255 ms
+2025-03-26 16:23:27.553 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (112950, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,86.647,86.647);
+	        
+2025-03-26 16:23:27.554 IST [1184726] LOG:  duration: 0.217 ms
+2025-03-26 16:23:27.554 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.554 IST [1184726] LOG:  duration: 0.146 ms
+2025-03-26 16:23:27.554 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 135092
+	        
+2025-03-26 16:23:27.555 IST [1184726] LOG:  duration: 0.592 ms
+2025-03-26 16:23:27.555 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 135092 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.555 IST [1184726] LOG:  duration: 0.204 ms
+2025-03-26 16:23:27.555 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (135092, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,16.362,8.181);
+	        
+2025-03-26 16:23:27.555 IST [1184726] LOG:  duration: 0.209 ms
+2025-03-26 16:23:27.555 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.556 IST [1184726] LOG:  duration: 0.143 ms
+2025-03-26 16:23:27.556 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 135075
+	        
+2025-03-26 16:23:27.556 IST [1184726] LOG:  duration: 0.434 ms
+2025-03-26 16:23:27.556 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 135075 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.556 IST [1184726] LOG:  duration: 0.197 ms
+2025-03-26 16:23:27.556 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (135075, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,24.268,12.134);
+	        
+2025-03-26 16:23:27.557 IST [1184726] LOG:  duration: 0.181 ms
+2025-03-26 16:23:27.557 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.557 IST [1184726] LOG:  duration: 0.138 ms
+2025-03-26 16:23:27.557 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 150500
+	        
+2025-03-26 16:23:27.558 IST [1184726] LOG:  duration: 0.420 ms
+2025-03-26 16:23:27.558 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 150500 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.558 IST [1184726] LOG:  duration: 0.210 ms
+2025-03-26 16:23:27.558 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (150500, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,19.901,19.901);
+	        
+2025-03-26 16:23:27.558 IST [1184726] LOG:  duration: 0.187 ms
+2025-03-26 16:23:27.558 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.558 IST [1184726] LOG:  duration: 0.145 ms
+2025-03-26 16:23:27.559 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 119493
+	        
+2025-03-26 16:23:27.559 IST [1184726] LOG:  duration: 0.484 ms
+2025-03-26 16:23:27.559 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 119493 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.559 IST [1184726] LOG:  duration: 0.184 ms
+2025-03-26 16:23:27.559 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (119493, 151, 3.0, 0,'2025-03-26T10:52:14'::timestamp,4.446,1.482);
+	        
+2025-03-26 16:23:27.560 IST [1184726] LOG:  duration: 0.181 ms
+2025-03-26 16:23:27.560 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.560 IST [1184726] LOG:  duration: 0.140 ms
+2025-03-26 16:23:27.560 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 105120
+	        
+2025-03-26 16:23:27.560 IST [1184726] LOG:  duration: 0.435 ms
+2025-03-26 16:23:27.561 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 105120 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.561 IST [1184726] LOG:  duration: 0.179 ms
+2025-03-26 16:23:27.561 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (105120, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,1.13,1.13);
+	        
+2025-03-26 16:23:27.561 IST [1184726] LOG:  duration: 0.193 ms
+2025-03-26 16:23:27.561 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.561 IST [1184726] LOG:  duration: 0.147 ms
+2025-03-26 16:23:27.561 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 119259
+	        
+2025-03-26 16:23:27.562 IST [1184726] LOG:  duration: 0.824 ms
+2025-03-26 16:23:27.563 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 1637) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.567 IST [1184726] LOG:  duration: 4.555 ms
+2025-03-26 16:23:27.570 IST [1184726] LOG:  statement: SELECT "stock_picking"."id", "stock_picking"."name", "stock_picking"."origin", "stock_picking"."note", "stock_picking"."backorder_id", "stock_picking"."return_id", "stock_picking"."move_type", "stock_picking"."state", "stock_picking"."group_id", "stock_picking"."priority", "stock_picking"."scheduled_date", "stock_picking"."date_deadline", "stock_picking"."has_deadline_issue", "stock_picking"."date", "stock_picking"."date_done", "stock_picking"."location_id", "stock_picking"."location_dest_id", "stock_picking"."picking_type_id", "stock_picking"."partner_id", "stock_picking"."company_id", "stock_picking"."user_id", "stock_picking"."owner_id", "stock_picking"."printed", "stock_picking"."is_locked", "stock_picking"."create_uid", "stock_picking"."create_date", "stock_picking"."write_uid", "stock_picking"."write_date", "stock_picking"."batch_id", "stock_picking"."pos_session_id", "stock_picking"."pos_order_id", "stock_picking"."unit_price", "stock_picking"."asset_account_id", "stock_picking"."asset_journal_id", "stock_picking"."sale_id", "stock_picking"."department_id", "stock_picking"."division_id", "stock_picking"."source_location_domain", "stock_picking"."dest_location_domain", "stock_picking"."carrier_price", "stock_picking"."carrier_id", "stock_picking"."weight", "stock_picking"."carrier_tracking_ref", "stock_picking"."landed_cost_applied", "stock_picking"."request_type", "stock_picking"."issue_type_id", "stock_picking"."return_date", "stock_picking"."to_department_id", "stock_picking"."journal_id", "stock_picking"."show_action_validate", "stock_picking"."show_entries", "stock_picking"."stock_entry", "stock_picking"."material_request_id", "stock_picking"."stock_request_id", "stock_picking"."material_transfer", "stock_picking"."backorder_journal" FROM "stock_picking" WHERE ("stock_picking"."id" IN (12993, 12994)) AND (("stock_picking"."company_id" IN (1)) AND (((((("stock_picking"."department_id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126)) OR "stock_picking"."department_id" IS NULL) OR EXISTS (SELECT 1 FROM "res_users_stock_picking_rel" AS "stock_picking__stock_request_user_ids" WHERE "stock_picking__stock_request_user_ids"."stock_picking_id" = "stock_picking"."id" AND "stock_picking__stock_request_user_ids"."res_users_id" IN (2))) OR ("stock_picking"."sale_id" IN (SELECT "sale_order"."id" FROM "sale_order" WHERE ("sale_order"."user_id" = 2)))) OR ("stock_picking"."id" IN (SELECT "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."purchase_line_id" IN (SELECT "purchase_order_line"."id" FROM "purchase_order_line" WHERE ("purchase_order_line"."order_id" IN (SELECT "purchase_order"."id" FROM "purchase_order" WHERE ("purchase_order"."user_id" = 2))))) AND "stock_move"."picking_id" IS NOT NULL))) OR ("stock_picking"."department_id" IN (SELECT "hr_department"."id" FROM "hr_department" WHERE ("hr_department"."id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126))))))
+2025-03-26 16:23:27.571 IST [1184726] LOG:  duration: 1.627 ms
+2025-03-26 16:23:27.573 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (12993)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.573 IST [1184726] LOG:  duration: 0.691 ms
+2025-03-26 16:23:27.574 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (56949, 56950))
+2025-03-26 16:23:27.575 IST [1184726] LOG:  duration: 0.425 ms
+2025-03-26 16:23:27.575 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (12993) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.576 IST [1184726] LOG:  duration: 0.565 ms
+2025-03-26 16:23:27.576 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (12993)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.576 IST [1184726] LOG:  duration: 0.223 ms
+2025-03-26 16:23:27.577 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (12994)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.577 IST [1184726] LOG:  duration: 0.196 ms
+2025-03-26 16:23:27.578 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (56951, 56952))
+2025-03-26 16:23:27.578 IST [1184726] LOG:  duration: 0.266 ms
+2025-03-26 16:23:27.578 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (12994) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.579 IST [1184726] LOG:  duration: 0.423 ms
+2025-03-26 16:23:27.579 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (12994)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.579 IST [1184726] LOG:  duration: 0.206 ms
+2025-03-26 16:23:27.580 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 119259 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.580 IST [1184726] LOG:  duration: 0.263 ms
+2025-03-26 16:23:27.580 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (119259, 151, 0.0, 0.0,'2025-03-26T10:52:14'::timestamp,0.0,0.0);
+	        
+2025-03-26 16:23:27.580 IST [1184726] LOG:  duration: 0.453 ms
+2025-03-26 16:23:27.581 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.581 IST [1184726] LOG:  duration: 0.319 ms
+2025-03-26 16:23:27.581 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 129184
+	        
+2025-03-26 16:23:27.582 IST [1184726] LOG:  duration: 0.637 ms
+2025-03-26 16:23:27.582 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 129184 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.582 IST [1184726] LOG:  duration: 0.239 ms
+2025-03-26 16:23:27.582 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (129184, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,47.028,23.514);
+	        
+2025-03-26 16:23:27.582 IST [1184726] LOG:  duration: 0.217 ms
+2025-03-26 16:23:27.583 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.583 IST [1184726] LOG:  duration: 0.167 ms
+2025-03-26 16:23:27.583 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 71327
+	        
+2025-03-26 16:23:27.584 IST [1184726] LOG:  duration: 0.529 ms
+2025-03-26 16:23:27.584 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 71327 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.584 IST [1184726] LOG:  duration: 0.201 ms
+2025-03-26 16:23:27.584 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (71327, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,23.818,23.818);
+	        
+2025-03-26 16:23:27.584 IST [1184726] LOG:  duration: 0.196 ms
+2025-03-26 16:23:27.584 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.585 IST [1184726] LOG:  duration: 0.142 ms
+2025-03-26 16:23:27.585 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 119755
+	        
+2025-03-26 16:23:27.585 IST [1184726] LOG:  duration: 0.669 ms
+2025-03-26 16:23:27.585 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 119755 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.586 IST [1184726] LOG:  duration: 0.390 ms
+2025-03-26 16:23:27.586 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (119755, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,217.337,217.337);
+	        
+2025-03-26 16:23:27.586 IST [1184726] LOG:  duration: 0.241 ms
+2025-03-26 16:23:27.586 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.587 IST [1184726] LOG:  duration: 0.207 ms
+2025-03-26 16:23:27.587 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 119757
+	        
+2025-03-26 16:23:27.587 IST [1184726] LOG:  duration: 0.483 ms
+2025-03-26 16:23:27.587 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 119757 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.588 IST [1184726] LOG:  duration: 0.208 ms
+2025-03-26 16:23:27.588 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (119757, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,325.105,325.105);
+	        
+2025-03-26 16:23:27.588 IST [1184726] LOG:  duration: 0.198 ms
+2025-03-26 16:23:27.588 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.588 IST [1184726] LOG:  duration: 0.168 ms
+2025-03-26 16:23:27.588 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 60763
+	        
+2025-03-26 16:23:27.589 IST [1184726] LOG:  duration: 0.462 ms
+2025-03-26 16:23:27.589 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 60763 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.589 IST [1184726] LOG:  duration: 0.214 ms
+2025-03-26 16:23:27.589 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (60763, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,7.1,3.55);
+	        
+2025-03-26 16:23:27.589 IST [1184726] LOG:  duration: 0.194 ms
+2025-03-26 16:23:27.590 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.590 IST [1184726] LOG:  duration: 0.145 ms
+2025-03-26 16:23:27.590 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 127454
+	        
+2025-03-26 16:23:27.591 IST [1184726] LOG:  duration: 0.769 ms
+2025-03-26 16:23:27.591 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 127454 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.591 IST [1184726] LOG:  duration: 0.241 ms
+2025-03-26 16:23:27.591 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (127454, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,90.573,90.573);
+	        
+2025-03-26 16:23:27.591 IST [1184726] LOG:  duration: 0.207 ms
+2025-03-26 16:23:27.591 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.592 IST [1184726] LOG:  duration: 0.145 ms
+2025-03-26 16:23:27.592 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 71332
+	        
+2025-03-26 16:23:27.592 IST [1184726] LOG:  duration: 0.443 ms
+2025-03-26 16:23:27.592 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 71332 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.592 IST [1184726] LOG:  duration: 0.183 ms
+2025-03-26 16:23:27.592 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (71332, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,247.542,123.771);
+	        
+2025-03-26 16:23:27.593 IST [1184726] LOG:  duration: 0.184 ms
+2025-03-26 16:23:27.593 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.593 IST [1184726] LOG:  duration: 0.135 ms
+2025-03-26 16:23:27.593 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 60064
+	        
+2025-03-26 16:23:27.594 IST [1184726] LOG:  duration: 0.537 ms
+2025-03-26 16:23:27.594 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 60064 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.594 IST [1184726] LOG:  duration: 0.193 ms
+2025-03-26 16:23:27.594 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (60064, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,49.309,49.309);
+	        
+2025-03-26 16:23:27.594 IST [1184726] LOG:  duration: 0.189 ms
+2025-03-26 16:23:27.594 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.594 IST [1184726] LOG:  duration: 0.141 ms
+2025-03-26 16:23:27.595 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 69989
+	        
+2025-03-26 16:23:27.595 IST [1184726] LOG:  duration: 0.663 ms
+2025-03-26 16:23:27.595 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 69989 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.595 IST [1184726] LOG:  duration: 0.195 ms
+2025-03-26 16:23:27.596 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (69989, 151, 4.0, 0,'2025-03-26T10:52:14'::timestamp,39.16,9.79);
+	        
+2025-03-26 16:23:27.596 IST [1184726] LOG:  duration: 0.180 ms
+2025-03-26 16:23:27.596 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.596 IST [1184726] LOG:  duration: 0.147 ms
+2025-03-26 16:23:27.596 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 98346
+	        
+2025-03-26 16:23:27.597 IST [1184726] LOG:  duration: 1.297 ms
+2025-03-26 16:23:27.598 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 880) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.602 IST [1184726] LOG:  duration: 4.443 ms
+2025-03-26 16:23:27.603 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 1507) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.607 IST [1184726] LOG:  duration: 4.233 ms
+2025-03-26 16:23:27.610 IST [1184726] LOG:  statement: SELECT "stock_picking"."id", "stock_picking"."name", "stock_picking"."origin", "stock_picking"."note", "stock_picking"."backorder_id", "stock_picking"."return_id", "stock_picking"."move_type", "stock_picking"."state", "stock_picking"."group_id", "stock_picking"."priority", "stock_picking"."scheduled_date", "stock_picking"."date_deadline", "stock_picking"."has_deadline_issue", "stock_picking"."date", "stock_picking"."date_done", "stock_picking"."location_id", "stock_picking"."location_dest_id", "stock_picking"."picking_type_id", "stock_picking"."partner_id", "stock_picking"."company_id", "stock_picking"."user_id", "stock_picking"."owner_id", "stock_picking"."printed", "stock_picking"."is_locked", "stock_picking"."create_uid", "stock_picking"."create_date", "stock_picking"."write_uid", "stock_picking"."write_date", "stock_picking"."batch_id", "stock_picking"."pos_session_id", "stock_picking"."pos_order_id", "stock_picking"."unit_price", "stock_picking"."asset_account_id", "stock_picking"."asset_journal_id", "stock_picking"."sale_id", "stock_picking"."department_id", "stock_picking"."division_id", "stock_picking"."source_location_domain", "stock_picking"."dest_location_domain", "stock_picking"."carrier_price", "stock_picking"."carrier_id", "stock_picking"."weight", "stock_picking"."carrier_tracking_ref", "stock_picking"."landed_cost_applied", "stock_picking"."request_type", "stock_picking"."issue_type_id", "stock_picking"."return_date", "stock_picking"."to_department_id", "stock_picking"."journal_id", "stock_picking"."show_action_validate", "stock_picking"."show_entries", "stock_picking"."stock_entry", "stock_picking"."material_request_id", "stock_picking"."stock_request_id", "stock_picking"."material_transfer", "stock_picking"."backorder_journal" FROM "stock_picking" WHERE ("stock_picking"."id" IN (6653, 6654, 11058, 11059)) AND (("stock_picking"."company_id" IN (1)) AND (((((("stock_picking"."department_id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126)) OR "stock_picking"."department_id" IS NULL) OR EXISTS (SELECT 1 FROM "res_users_stock_picking_rel" AS "stock_picking__stock_request_user_ids" WHERE "stock_picking__stock_request_user_ids"."stock_picking_id" = "stock_picking"."id" AND "stock_picking__stock_request_user_ids"."res_users_id" IN (2))) OR ("stock_picking"."sale_id" IN (SELECT "sale_order"."id" FROM "sale_order" WHERE ("sale_order"."user_id" = 2)))) OR ("stock_picking"."id" IN (SELECT "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."purchase_line_id" IN (SELECT "purchase_order_line"."id" FROM "purchase_order_line" WHERE ("purchase_order_line"."order_id" IN (SELECT "purchase_order"."id" FROM "purchase_order" WHERE ("purchase_order"."user_id" = 2))))) AND "stock_move"."picking_id" IS NOT NULL))) OR ("stock_picking"."department_id" IN (SELECT "hr_department"."id" FROM "hr_department" WHERE ("hr_department"."id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126))))))
+2025-03-26 16:23:27.612 IST [1184726] LOG:  duration: 1.400 ms
+2025-03-26 16:23:27.613 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (6653, 11058)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.613 IST [1184726] LOG:  duration: 0.761 ms
+2025-03-26 16:23:27.614 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (39208, 52680, 52681))
+2025-03-26 16:23:27.614 IST [1184726] LOG:  duration: 0.489 ms
+2025-03-26 16:23:27.615 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (6653, 11058) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.616 IST [1184726] LOG:  duration: 0.691 ms
+2025-03-26 16:23:27.616 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (6653, 11058)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.616 IST [1184726] LOG:  duration: 0.226 ms
+2025-03-26 16:23:27.617 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (6654, 11059)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.617 IST [1184726] LOG:  duration: 0.214 ms
+2025-03-26 16:23:27.618 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (39209, 52682, 52683))
+2025-03-26 16:23:27.618 IST [1184726] LOG:  duration: 0.267 ms
+2025-03-26 16:23:27.618 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (6654, 11059) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.619 IST [1184726] LOG:  duration: 0.411 ms
+2025-03-26 16:23:27.619 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (6654, 11059)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.619 IST [1184726] LOG:  duration: 0.231 ms
+2025-03-26 16:23:27.620 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 98346 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.620 IST [1184726] LOG:  duration: 0.422 ms
+2025-03-26 16:23:27.620 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (98346, 151, 0.0, 0.0,'2025-03-26T10:52:14'::timestamp,0.0,0.0);
+	        
+2025-03-26 16:23:27.620 IST [1184726] LOG:  duration: 0.287 ms
+2025-03-26 16:23:27.621 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.621 IST [1184726] LOG:  duration: 0.173 ms
+2025-03-26 16:23:27.621 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 128483
+	        
+2025-03-26 16:23:27.622 IST [1184726] LOG:  duration: 0.598 ms
+2025-03-26 16:23:27.622 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 128483 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.622 IST [1184726] LOG:  duration: 0.208 ms
+2025-03-26 16:23:27.622 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (128483, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,30.466,15.233);
+	        
+2025-03-26 16:23:27.622 IST [1184726] LOG:  duration: 0.202 ms
+2025-03-26 16:23:27.622 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.623 IST [1184726] LOG:  duration: 0.143 ms
+2025-03-26 16:23:27.623 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 127765
+	        
+2025-03-26 16:23:27.624 IST [1184726] LOG:  duration: 0.947 ms
+2025-03-26 16:23:27.624 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 1501) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.628 IST [1184726] LOG:  duration: 4.285 ms
+2025-03-26 16:23:27.631 IST [1184726] LOG:  statement: SELECT "stock_picking"."id", "stock_picking"."name", "stock_picking"."origin", "stock_picking"."note", "stock_picking"."backorder_id", "stock_picking"."return_id", "stock_picking"."move_type", "stock_picking"."state", "stock_picking"."group_id", "stock_picking"."priority", "stock_picking"."scheduled_date", "stock_picking"."date_deadline", "stock_picking"."has_deadline_issue", "stock_picking"."date", "stock_picking"."date_done", "stock_picking"."location_id", "stock_picking"."location_dest_id", "stock_picking"."picking_type_id", "stock_picking"."partner_id", "stock_picking"."company_id", "stock_picking"."user_id", "stock_picking"."owner_id", "stock_picking"."printed", "stock_picking"."is_locked", "stock_picking"."create_uid", "stock_picking"."create_date", "stock_picking"."write_uid", "stock_picking"."write_date", "stock_picking"."batch_id", "stock_picking"."pos_session_id", "stock_picking"."pos_order_id", "stock_picking"."unit_price", "stock_picking"."asset_account_id", "stock_picking"."asset_journal_id", "stock_picking"."sale_id", "stock_picking"."department_id", "stock_picking"."division_id", "stock_picking"."source_location_domain", "stock_picking"."dest_location_domain", "stock_picking"."carrier_price", "stock_picking"."carrier_id", "stock_picking"."weight", "stock_picking"."carrier_tracking_ref", "stock_picking"."landed_cost_applied", "stock_picking"."request_type", "stock_picking"."issue_type_id", "stock_picking"."return_date", "stock_picking"."to_department_id", "stock_picking"."journal_id", "stock_picking"."show_action_validate", "stock_picking"."show_entries", "stock_picking"."stock_entry", "stock_picking"."material_request_id", "stock_picking"."stock_request_id", "stock_picking"."material_transfer", "stock_picking"."backorder_journal" FROM "stock_picking" WHERE ("stock_picking"."id" IN (11038, 11039)) AND (("stock_picking"."company_id" IN (1)) AND (((((("stock_picking"."department_id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126)) OR "stock_picking"."department_id" IS NULL) OR EXISTS (SELECT 1 FROM "res_users_stock_picking_rel" AS "stock_picking__stock_request_user_ids" WHERE "stock_picking__stock_request_user_ids"."stock_picking_id" = "stock_picking"."id" AND "stock_picking__stock_request_user_ids"."res_users_id" IN (2))) OR ("stock_picking"."sale_id" IN (SELECT "sale_order"."id" FROM "sale_order" WHERE ("sale_order"."user_id" = 2)))) OR ("stock_picking"."id" IN (SELECT "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."purchase_line_id" IN (SELECT "purchase_order_line"."id" FROM "purchase_order_line" WHERE ("purchase_order_line"."order_id" IN (SELECT "purchase_order"."id" FROM "purchase_order" WHERE ("purchase_order"."user_id" = 2))))) AND "stock_move"."picking_id" IS NOT NULL))) OR ("stock_picking"."department_id" IN (SELECT "hr_department"."id" FROM "hr_department" WHERE ("hr_department"."id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126))))))
+2025-03-26 16:23:27.632 IST [1184726] LOG:  duration: 1.460 ms
+2025-03-26 16:23:27.633 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (11038)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.633 IST [1184726] LOG:  duration: 0.262 ms
+2025-03-26 16:23:27.634 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (52652))
+2025-03-26 16:23:27.634 IST [1184726] LOG:  duration: 0.289 ms
+2025-03-26 16:23:27.634 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (11038) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.635 IST [1184726] LOG:  duration: 0.432 ms
+2025-03-26 16:23:27.635 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (11038)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.636 IST [1184726] LOG:  duration: 0.228 ms
+2025-03-26 16:23:27.636 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (11039)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.636 IST [1184726] LOG:  duration: 0.241 ms
+2025-03-26 16:23:27.637 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (52653))
+2025-03-26 16:23:27.637 IST [1184726] LOG:  duration: 0.548 ms
+2025-03-26 16:23:27.638 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (11039) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.638 IST [1184726] LOG:  duration: 0.427 ms
+2025-03-26 16:23:27.639 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (11039)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.639 IST [1184726] LOG:  duration: 0.217 ms
+2025-03-26 16:23:27.639 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 127765 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.639 IST [1184726] LOG:  duration: 0.283 ms
+2025-03-26 16:23:27.639 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (127765, 151, 1.0, 0.0,'2025-03-26T10:52:14'::timestamp,55.767,55.767);
+	        
+2025-03-26 16:23:27.640 IST [1184726] LOG:  duration: 0.235 ms
+2025-03-26 16:23:27.640 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.640 IST [1184726] LOG:  duration: 0.169 ms
+2025-03-26 16:23:27.640 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 70275
+	        
+2025-03-26 16:23:27.641 IST [1184726] LOG:  duration: 0.882 ms
+2025-03-26 16:23:27.641 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 70275 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.641 IST [1184726] LOG:  duration: 0.218 ms
+2025-03-26 16:23:27.642 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (70275, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,290.208,145.104);
+	        
+2025-03-26 16:23:27.642 IST [1184726] LOG:  duration: 0.194 ms
+2025-03-26 16:23:27.642 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.642 IST [1184726] LOG:  duration: 0.161 ms
+2025-03-26 16:23:27.642 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 25933
+	        
+2025-03-26 16:23:27.643 IST [1184726] LOG:  duration: 0.551 ms
+2025-03-26 16:23:27.643 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 25933 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.643 IST [1184726] LOG:  duration: 0.211 ms
+2025-03-26 16:23:27.643 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (25933, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,55.169,55.169);
+	        
+2025-03-26 16:23:27.643 IST [1184726] LOG:  duration: 0.191 ms
+2025-03-26 16:23:27.644 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.644 IST [1184726] LOG:  duration: 0.146 ms
+2025-03-26 16:23:27.644 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 25936
+	        
+2025-03-26 16:23:27.644 IST [1184726] LOG:  duration: 0.430 ms
+2025-03-26 16:23:27.644 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 25936 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.644 IST [1184726] LOG:  duration: 0.177 ms
+2025-03-26 16:23:27.645 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (25936, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,132.084,132.084);
+	        
+2025-03-26 16:23:27.645 IST [1184726] LOG:  duration: 0.188 ms
+2025-03-26 16:23:27.645 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.645 IST [1184726] LOG:  duration: 0.175 ms
+2025-03-26 16:23:27.645 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 98389
+	        
+2025-03-26 16:23:27.646 IST [1184726] LOG:  duration: 0.464 ms
+2025-03-26 16:23:27.646 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 98389 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.646 IST [1184726] LOG:  duration: 0.198 ms
+2025-03-26 16:23:27.646 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (98389, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,54.23,54.23);
+	        
+2025-03-26 16:23:27.647 IST [1184726] LOG:  duration: 0.202 ms
+2025-03-26 16:23:27.647 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.647 IST [1184726] LOG:  duration: 0.156 ms
+2025-03-26 16:23:27.647 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 129007
+	        
+2025-03-26 16:23:27.648 IST [1184726] LOG:  duration: 0.567 ms
+2025-03-26 16:23:27.648 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 129007 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.648 IST [1184726] LOG:  duration: 0.192 ms
+2025-03-26 16:23:27.648 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (129007, 151, 2.0, 0,'2025-03-26T10:52:14'::timestamp,41.812,20.906);
+	        
+2025-03-26 16:23:27.648 IST [1184726] LOG:  duration: 0.199 ms
+2025-03-26 16:23:27.649 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.649 IST [1184726] LOG:  duration: 0.152 ms
+2025-03-26 16:23:27.649 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 113614
+	        
+2025-03-26 16:23:27.650 IST [1184726] LOG:  duration: 0.595 ms
+2025-03-26 16:23:27.650 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 113614 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.650 IST [1184726] LOG:  duration: 0.220 ms
+2025-03-26 16:23:27.650 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (113614, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,138.866,138.866);
+	        
+2025-03-26 16:23:27.650 IST [1184726] LOG:  duration: 0.197 ms
+2025-03-26 16:23:27.651 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.651 IST [1184726] LOG:  duration: 0.149 ms
+2025-03-26 16:23:27.651 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 69991
+	        
+2025-03-26 16:23:27.651 IST [1184726] LOG:  duration: 0.448 ms
+2025-03-26 16:23:27.651 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 69991 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.652 IST [1184726] LOG:  duration: 0.187 ms
+2025-03-26 16:23:27.652 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (69991, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,9.915,9.915);
+	        
+2025-03-26 16:23:27.652 IST [1184726] LOG:  duration: 0.173 ms
+2025-03-26 16:23:27.652 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.652 IST [1184726] LOG:  duration: 0.158 ms
+2025-03-26 16:23:27.652 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 61081
+	        
+2025-03-26 16:23:27.653 IST [1184726] LOG:  duration: 0.593 ms
+2025-03-26 16:23:27.653 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 61081 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.653 IST [1184726] LOG:  duration: 0.242 ms
+2025-03-26 16:23:27.654 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (61081, 151, 1.0, 0,'2025-03-26T10:52:14'::timestamp,55.207,55.207);
+	        
+2025-03-26 16:23:27.654 IST [1184726] LOG:  duration: 0.211 ms
+2025-03-26 16:23:27.654 IST [1184726] LOG:  statement: SELECT "stock_location"."id" FROM "stock_location" WHERE "stock_location"."id" IN (163)
+2025-03-26 16:23:27.654 IST [1184726] LOG:  duration: 0.164 ms
+2025-03-26 16:23:27.654 IST [1184726] LOG:  statement: 
+	            select sp.stock_request_id from stock_move sm
+	            join stock_picking sp on sm.picking_id = sp.id
+	            join stock_picking_type spt on sp.picking_type_id = spt.id
+	            where sp.location_id = 151 and sp.location_dest_id = 163
+	            and sp.state = 'done' and sp.stock_request_id IS NOT NULL
+	            AND sp.date_done <= '2025-03-26T10:52:14'::timestamp and spt.code = 'internal'
+	            and sm.product_id = 163023
+	        
+2025-03-26 16:23:27.655 IST [1184726] LOG:  duration: 0.547 ms
+2025-03-26 16:23:27.655 IST [1184726] LOG:  statement: select sum(value) as value, sum(quantity) as qty from stock_valuation_layer where product_id = 163023 and create_date <= '2025-03-26T10:52:14'::timestamp
+2025-03-26 16:23:27.655 IST [1184726] LOG:  duration: 0.206 ms
+2025-03-26 16:23:27.655 IST [1184726] LOG:  statement: 
+	            INSERT INTO stock_inventory_at_date (product_id, location_id, quantity_available,transit_qty,to_date,total_cost,standard_price)
+	            VALUES (163023, 151, 4.0, 0,'2025-03-26T10:52:14'::timestamp,51.776,12.944);
+	        
+	        
+	             
+2025-03-26 16:23:27.760 IST [1184726] LOG:  duration: 0.666 ms
+2025-03-26 16:23:27.761 IST [1184726] LOG:  statement: SELECT "stock_picking"."id" FROM "stock_picking" WHERE ("stock_picking"."stock_request_id" = 422) ORDER BY "stock_picking"."priority" DESC , "stock_picking"."scheduled_date" ASC , "stock_picking"."id" DESC 
+2025-03-26 16:23:27.766 IST [1184726] LOG:  duration: 5.051 ms
+2025-03-26 16:23:27.768 IST [1184726] LOG:  statement: SELECT "stock_picking"."id", "stock_picking"."name", "stock_picking"."origin", "stock_picking"."note", "stock_picking"."backorder_id", "stock_picking"."return_id", "stock_picking"."move_type", "stock_picking"."state", "stock_picking"."group_id", "stock_picking"."priority", "stock_picking"."scheduled_date", "stock_picking"."date_deadline", "stock_picking"."has_deadline_issue", "stock_picking"."date", "stock_picking"."date_done", "stock_picking"."location_id", "stock_picking"."location_dest_id", "stock_picking"."picking_type_id", "stock_picking"."partner_id", "stock_picking"."company_id", "stock_picking"."user_id", "stock_picking"."owner_id", "stock_picking"."printed", "stock_picking"."is_locked", "stock_picking"."create_uid", "stock_picking"."create_date", "stock_picking"."write_uid", "stock_picking"."write_date", "stock_picking"."batch_id", "stock_picking"."pos_session_id", "stock_picking"."pos_order_id", "stock_picking"."unit_price", "stock_picking"."asset_account_id", "stock_picking"."asset_journal_id", "stock_picking"."sale_id", "stock_picking"."department_id", "stock_picking"."division_id", "stock_picking"."source_location_domain", "stock_picking"."dest_location_domain", "stock_picking"."carrier_price", "stock_picking"."carrier_id", "stock_picking"."weight", "stock_picking"."carrier_tracking_ref", "stock_picking"."landed_cost_applied", "stock_picking"."request_type", "stock_picking"."issue_type_id", "stock_picking"."return_date", "stock_picking"."to_department_id", "stock_picking"."journal_id", "stock_picking"."show_action_validate", "stock_picking"."show_entries", "stock_picking"."stock_entry", "stock_picking"."material_request_id", "stock_picking"."stock_request_id", "stock_picking"."material_transfer", "stock_picking"."backorder_journal" FROM "stock_picking" WHERE ("stock_picking"."id" IN (3276, 3277)) AND (("stock_picking"."company_id" IN (1)) AND (((((("stock_picking"."department_id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126)) OR "stock_picking"."department_id" IS NULL) OR EXISTS (SELECT 1 FROM "res_users_stock_picking_rel" AS "stock_picking__stock_request_user_ids" WHERE "stock_picking__stock_request_user_ids"."stock_picking_id" = "stock_picking"."id" AND "stock_picking__stock_request_user_ids"."res_users_id" IN (2))) OR ("stock_picking"."sale_id" IN (SELECT "sale_order"."id" FROM "sale_order" WHERE ("sale_order"."user_id" = 2)))) OR ("stock_picking"."id" IN (SELECT "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."purchase_line_id" IN (SELECT "purchase_order_line"."id" FROM "purchase_order_line" WHERE ("purchase_order_line"."order_id" IN (SELECT "purchase_order"."id" FROM "purchase_order" WHERE ("purchase_order"."user_id" = 2))))) AND "stock_move"."picking_id" IS NOT NULL))) OR ("stock_picking"."department_id" IN (SELECT "hr_department"."id" FROM "hr_department" WHERE ("hr_department"."id" IN (122, 131, 133, 132, 140, 137, 128, 136, 147, 142, 138, 141, 130, 159, 169, 123, 164, 146, 158, 144, 124, 156, 151, 149, 150, 155, 148, 179, 143, 139, 154, 127, 134, 145, 129, 125, 135, 157, 152, 153, 126))))))
+2025-03-26 16:23:27.769 IST [1184726] LOG:  duration: 1.445 ms
+2025-03-26 16:23:27.770 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (3276)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.771 IST [1184726] LOG:  duration: 0.794 ms
+2025-03-26 16:23:27.771 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (30088))
+2025-03-26 16:23:27.772 IST [1184726] LOG:  duration: 0.501 ms
+2025-03-26 16:23:27.772 IST [1184726] LOG:  statement: SELECT "res_users_stock_picking_rel"."stock_picking_id", "res_users_stock_picking_rel"."res_users_id" FROM "res_users" LEFT JOIN "res_partner" AS "res_users__partner_id" ON ("res_users"."partner_id" = "res_users__partner_id"."id") JOIN "res_users_stock_picking_rel" ON ("res_users_stock_picking_rel"."res_users_id" = "res_users"."id") WHERE "res_users_stock_picking_rel"."stock_picking_id" IN (3276) ORDER BY "res_users__partner_id"."name"  , "res_users"."login"  
+2025-03-26 16:23:27.773 IST [1184726] LOG:  duration: 0.519 ms
+2025-03-26 16:23:27.774 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (3276)) AND ("stock_move"."company_id" IN (1)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.774 IST [1184726] LOG:  duration: 0.309 ms
+2025-03-26 16:23:27.774 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."picking_id" FROM "stock_move" WHERE ("stock_move"."picking_id" IN (3277)) ORDER BY "stock_move"."sequence"  , "stock_move"."id"  
+2025-03-26 16:23:27.775 IST [1184726] LOG:  duration: 0.281 ms
+2025-03-26 16:23:27.775 IST [1184726] LOG:  statement: SELECT "stock_move"."id", "stock_move"."name", "stock_move"."sequence", "stock_move"."priority", "stock_move"."date", "stock_move"."date_deadline", "stock_move"."company_id", "stock_move"."product_id", "stock_move"."description_picking", "stock_move"."product_qty", "stock_move"."product_uom_qty", "stock_move"."product_uom", "stock_move"."location_id", "stock_move"."location_dest_id", "stock_move"."partner_id", "stock_move"."state", "stock_move"."picked", "stock_move"."price_unit", "stock_move"."origin", "stock_move"."procure_method", "stock_move"."scrapped", "stock_move"."scrap_id", "stock_move"."group_id", "stock_move"."rule_id", "stock_move"."propagate_cancel", "stock_move"."delay_alert_date", "stock_move"."picking_type_id", "stock_move"."is_inventory", "stock_move"."origin_returned_move_id", "stock_move"."restrict_partner_id", "stock_move"."warehouse_id", "stock_move"."quantity", "stock_move"."additional", "stock_move"."reference", "stock_move"."package_level_id", "stock_move"."next_serial", "stock_move"."next_serial_count", "stock_move"."orderpoint_id", "stock_move"."reservation_date", "stock_move"."product_packaging_id", "stock_move"."create_uid", "stock_move"."create_date", "stock_move"."write_uid", "stock_move"."write_date", "stock_move"."created_production_id", "stock_move"."production_id", "stock_move"."raw_material_production_id", "stock_move"."unbuild_id", "stock_move"."consume_unbuild_id", "stock_move"."operation_id", "stock_move"."workorder_id", "stock_move"."bom_line_id", "stock_move"."byproduct_id", "stock_move"."unit_factor", "stock_move"."is_done", "stock_move"."order_finished_lot_id", "stock_move"."cost_share", "stock_move"."manual_consumption", "stock_move"."to_refund", "stock_move"."purchase_line_id", "stock_move"."sale_line_id", "stock_move"."repair_id", "stock_move"."repair_line_type", "stock_move"."weight", "stock_move"."approved_quantity", "stock_move"."product_cost", "stock_move"."total_cost" FROM "stock_move" WHERE ("stock_move"."id" IN (30089))
+2025-03-26 16:23:27.776 IST [1184726] LOG:  duration: 0.323 ms
